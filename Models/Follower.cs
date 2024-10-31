@@ -2,7 +2,7 @@
 
 namespace BlogAPI.Models
 {
-    public class Followers
+    public class Follower
     {
         public int Id { get; set; }
 
