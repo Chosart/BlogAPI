@@ -12,6 +12,9 @@ namespace BlogAPI.Models
         public string UserName { get; set; }
 
         [Required]
+        public int FollowersCount { get; set; }
+
+        [Required]
         [EmailAddress]
         public string Email { get; set; }
 
