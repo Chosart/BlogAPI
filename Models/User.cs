@@ -27,6 +27,9 @@ namespace BlogAPI.Models
         public string Salt { get; set; }
 
         [JsonIgnore]
+        public ICollection<UserPostLike> PostLikes { get; set; } = new List<User>();
+
+        [JsonIgnore]
         public ICollection<Post> Posts { get; set; } = new List<Post>();
 
         [JsonIgnore]

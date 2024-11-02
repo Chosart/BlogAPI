@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using BlogAPI.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace BlogAPI.Data
 {
@@ -8,5 +9,9 @@ namespace BlogAPI.Data
         {
 
         }
+
+        public DbSet<User> Users { get; set; }
+        public DbSet<Models.Post> Posts { get; set; }
+
     }
 }
