@@ -8,10 +8,10 @@ namespace BlogAPI.Models
 
         [Required]
         public int FollowerId { get; set; }
-        public User Follower { get; set; }
+        public User FollowerUser { get; set; }
 
         [Required]
         public int FollowingId { get; set; }
-        public User Following { get; set; }
+        public User FollowingUser { get; set; }
     }
 }

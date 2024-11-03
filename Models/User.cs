@@ -36,10 +36,10 @@ namespace BlogAPI.Models
         public ICollection<Comment> Comments { get; set; } = new List<Comment>();
 
         [JsonIgnore]
-        public ICollection<Follower> Followers { get; set; } = new List<Follower>();
+        public ICollection<Follower> FollowerUser { get; set; } = new List<Follower>();
 
         [JsonIgnore]
-        public ICollection<Follower> Following { get; set; } = new List<Follower>();
+        public ICollection<Follower> FollowingUser { get; set; } = new List<Follower>();
 
         [JsonIgnore]
         public ICollection<Like> Likes { get; set; } = new List<Like>();
