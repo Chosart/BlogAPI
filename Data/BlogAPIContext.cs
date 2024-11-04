@@ -18,7 +18,7 @@ namespace BlogAPI.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Налаштування для User
+            // User settings
             modelBuilder.Entity<User>()
                 .HasMany(u => u.UserLikes)
                 .WithOne(ul => ul.User)
@@ -50,6 +50,17 @@ namespace BlogAPI.Data
                 .HasMany(u => u.Likes)
                 .WithOne(l => l.User)
                 .HasForeignKey(l => l.UserId);
+
+            // Post settings
+            modelBuilder.Entity<Post>()
+                .HasMany(p => p.Likes)
+                .WithOne(l => l.Post)
+                .HasForeignKey(l => l.PostId);
+
+            modelBuilder.Entity<Post>()
+                .HasMany(p => p.Comments)
+                .WithOne(c => c.Post)
+                .HasForeignKey(c => c.PostId);
         }
     }
 }

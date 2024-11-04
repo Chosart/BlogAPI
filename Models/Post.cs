@@ -18,5 +18,9 @@ namespace BlogAPI.Models
         [Required]
         public int UserId { get; set; }
         public User User { get; set; }
+
+        public ICollection<Like> Likes { get; set; } = new List<Like>();
+        public ICollection<Comment> Comments { get; set; } = new List<Comment>();
+        public ICollection<UserPostLike> UserLikes { get; set; } = new List<UserPostLike>();
     }
 }
