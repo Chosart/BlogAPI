@@ -75,6 +75,22 @@ namespace BlogAPI.Data
                 .HasOne(up => up.Post)
                 .WithMany(up => up.UserLikes)
                 .HasForeignKey(up => up.PostId);
+
+            // Follower settings
+            modelBuilder.Entity<Follower>()
+                .HasKey(f => new { f.FollowerId, f.FollowingId });
+
+            modelBuilder.Entity<Follower>()
+                .HasOne(f => f.FollowerUser)
+                .WithMany(u => u.FollowerUser)
+                .HasForeignKey(f => f.FollowerId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Follower>()
+                .HasOne(f => f.FollowingUser)
+                .WithMany(u => u.FollowingUser)
+                .HasForeignKey(f => f.FollowingId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
