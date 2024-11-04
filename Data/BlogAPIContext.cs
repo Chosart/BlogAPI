@@ -61,6 +61,20 @@ namespace BlogAPI.Data
                 .HasMany(p => p.Comments)
                 .WithOne(c => c.Post)
                 .HasForeignKey(c => c.PostId);
+
+            // UserPostLike settings
+            modelBuilder.Entity<UserPostLike>()
+                .HasKey(up => new {up.UserId, up.PostId });
+
+            modelBuilder.Entity<UserPostLike>()
+                .HasOne(up => up.User)
+                .WithMany(up => up.UserLikes)
+                .HasForeignKey(up => up.UserId);
+
+            modelBuilder.Entity<UserPostLike>()
+                .HasOne(up => up.Post)
+                .WithMany(up => up.UserLikes)
+                .HasForeignKey(up => up.PostId);
         }
     }
 }
