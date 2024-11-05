@@ -22,5 +22,16 @@ namespace BlogAPI.Controllers
             var users = await _context.Users.ToListAsync();
             return Ok(users);
         }
+
+        [HttpGet("id")]
+        public async Task<IActionResult> GetUser(int id)
+        {
+            var user = await _context.Users.FindAsync();
+            if (user == null)
+            {
+                return NotFound("User not found");
+            }
+            return Ok(user);
+        }
     }
 }
