@@ -53,5 +53,37 @@ namespace BlogAPI.Controllers
 
             return CreatedAtAction(nameof(User), new { id = user.Id }, user);
         }
+
+        [HttpPut("id")]
+        public async Task<ActionResult<User>> UpdateUser(int id, User user)
+        {
+            if (user == null)
+            {
+                return BadRequest("User cannot be null");
+            }
+
+            if (id != user.Id)
+            {
+                return BadRequest("ID in the URL does not match the user ID");
+            }
+
+            var existingUser = await _context.Users.FindAsync(id);
+            if (existingUser == null)
+            {
+                return NotFound("User not found");
+            }
+
+            existingUser.UserName = user.UserName;
+            existingUser.Email = user.Email;
+
+            if (!string.IsNullOrEmpty(user.PasswordHash))
+            {
+                existingUser.SetPassword(user.PasswordHash);
+            }
+
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
     }
 }
