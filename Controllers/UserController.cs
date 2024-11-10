@@ -85,5 +85,33 @@ namespace BlogAPI.Controllers
 
             return NoContent();
         }
+
+        [HttpDelete("id")]
+        public async Task<ActionResult> DeleteUser(int id)
+        {
+            var user = await _context.Users.FindAsync();
+            if (user == null)
+            {
+                return BadRequest("User not found");
+            }
+
+            if (id != user.Id)
+            {
+                return BadRequest("ID in the URL does not match the user ID");
+            }
+                
+            _context.Users.Remove(user);
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch
+            {
+                return StatusCode(500, "Internal server error");
+            }
+
+            return NoContent();
+        }
     }
 }
